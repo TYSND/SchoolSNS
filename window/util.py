@@ -2,11 +2,25 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 serverIp=""
 serverPort=0
 
+
+class publicWindow:
+    __Dialog=""
+    def __init__(self):
+        print('init')
+        self.__Dialog=initWin(self.uiClass)
+
+    def show(self):
+        self.__Dialog.show()
+
+
 def initWin(uiClass):
     'initial window and set ui,then return window'
     Dialog = QtWidgets.QDialog()
-    ui = uiClass()
-    ui.setupUi(Dialog)
+    try:
+        ui = uiClass()
+        ui.setupUi(Dialog)
+    except:
+        print('wrong ui class')
     return Dialog
 
 
