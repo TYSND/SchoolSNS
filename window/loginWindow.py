@@ -1,28 +1,29 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from registerWindow import Ui_registerWindow
+from registerWindow import registerWindow
 from loginWindowFuncs import loginFuncs
 from loginWindowUi import Ui_loginWindow
 from util import *
 
-class loginWindow:
-    Dialog=""       #handle for login window
-    textCtrl=""     #           control to show wrong&info
+class loginWindow(publicWindow):
+    textCtrl=""     #label to show info
     lf=loginFuncs() #alias for namespace store login functions
     loginBut=""     
     accIn=""
     pwIn=""
-    
+    uiClass=Ui_loginWindow
 
-    def __init__(self,dialog,loginBut,registerBut,accountInput,passwordInput,showLab):
-        self.Dialog=dialog
-        #bind onclick func to loginBut
+    def __init__(self,loginBut,registerBut,accountInput,passwordInput,showLab):
+        super.__Dialog=initWin(Ui_loginWindow)
+        #self.__Dialog=initWin(Ui_loginWindow)
+        #alias
+        dialog=self.__Dialog
+        #bind button onclick event
         dialog.findChild(QtWidgets.QPushButton,loginBut).clicked.connect(self.login)
-        #bind onclick func to registerBut
         dialog.findChild(QtWidgets.QPushButton,registerBut).clicked.connect(self.register)
         #set handle
-        self.textCtrl=self.Dialog.findChild(QtWidgets.QLabel,showLab)
-        self.accIn=self.Dialog.findChild(QtWidgets.QLineEdit,accountInput)
-        self.pwIn=self.Dialog.findChild(QtWidgets.QLineEdit,passwordInput)
+        self.textCtrl=self.__Dialog.findChild(QtWidgets.QLabel,showLab)
+        self.accIn=self.__Dialog.findChild(QtWidgets.QLineEdit,accountInput)
+        self.pwIn=self.__Dialog.findChild(QtWidgets.QLineEdit,passwordInput)
     
     def login(self):
         'function after click login button'
@@ -48,7 +49,7 @@ class loginWindow:
             dont show login window now()
             open friends window()
             """
-            self.Dialog.hide()
+            self.__Dialog.hide()
             self.friWin=initWin()
             self.friWin.show()
             
@@ -58,14 +59,14 @@ class loginWindow:
             show exception info()
             undisable all controls and hide wating animate()
             """
-
+    
     def register(self):
         'function after click register button'
         print('onClickRegister')
         #window must be member varieble or will be destroyed
-        self.regWin=QtWidgets.QDialog()
-        ui = Ui_registerWindow()
-        ui.setupUi(self.regWin)
+        #registerWindow()        
+        self.regWin=registerWindow()
+        print('1')
         self.regWin.show()
 
     def showInfo(self,text):
@@ -74,14 +75,13 @@ class loginWindow:
             self.textCtrl.setText(text)
         except:
             print('textCtrl wrong')
-        
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog=initWin(Ui_loginWindow)
-    h=loginWindow(Dialog,loginBut='loginBut',registerBut='registerBut',\
+    h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
                     showLab='showLab')
-    Dialog.show()
+    h.show()
     sys.exit(app.exec_())
