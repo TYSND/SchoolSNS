@@ -1,7 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from registerWindow import registerWindow
+from friWindow import friWindow
 from loginWindowFuncs import loginFuncs
-from loginWindowUi import Ui_loginWindow
+from windowUi import *
 from util import *
 
 class loginWindow(publicWindow):
@@ -10,20 +11,21 @@ class loginWindow(publicWindow):
     loginBut=""     
     accIn=""
     pwIn=""
-    uiClass=Ui_loginWindow
+    _uiClass=Ui_loginWindow
 
     def __init__(self,loginBut,registerBut,accountInput,passwordInput,showLab):
-        super.__Dialog=initWin(Ui_loginWindow)
+        print(self._Dialog)
+        super(loginWindow,self).__init__()
         #self.__Dialog=initWin(Ui_loginWindow)
         #alias
-        dialog=self.__Dialog
+        dialog=self._Dialog
         #bind button onclick event
         dialog.findChild(QtWidgets.QPushButton,loginBut).clicked.connect(self.login)
         dialog.findChild(QtWidgets.QPushButton,registerBut).clicked.connect(self.register)
         #set handle
-        self.textCtrl=self.__Dialog.findChild(QtWidgets.QLabel,showLab)
-        self.accIn=self.__Dialog.findChild(QtWidgets.QLineEdit,accountInput)
-        self.pwIn=self.__Dialog.findChild(QtWidgets.QLineEdit,passwordInput)
+        self.textCtrl=self._Dialog.findChild(QtWidgets.QLabel,showLab)
+        self.accIn=self._Dialog.findChild(QtWidgets.QLineEdit,accountInput)
+        self.pwIn=self._Dialog.findChild(QtWidgets.QLineEdit,passwordInput)
     
     def login(self):
         'function after click login button'
@@ -42,17 +44,17 @@ class loginWindow(publicWindow):
         do disable all controls and display waiting animate()
         wait for reply from server()
         """
+        print('now xhr')
         jstr=XHR(jstr)
         #login ok,open friends window
-        if jstr.status=='true':
+        if jstr['status']=='true':
             """
             dont show login window now()
             open friends window()
             """
-            self.__Dialog.hide()
-            self.friWin=initWin()
+            self.friWin=friWindow()
             self.friWin.show()
-            
+            self._Dialog.hide()
         #login fail,show exception
         else:
             """
@@ -63,8 +65,7 @@ class loginWindow(publicWindow):
     def register(self):
         'function after click register button'
         print('onClickRegister')
-        #window must be member varieble or will be destroyed
-        #registerWindow()        
+        #window must be member varieble or will be destroyed 
         self.regWin=registerWindow()
         print('1')
         self.regWin.show()

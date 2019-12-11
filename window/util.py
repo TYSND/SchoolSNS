@@ -4,13 +4,13 @@ serverPort=0
 
 
 class publicWindow:
-    __Dialog=""
+    _Dialog=""
     def __init__(self):
         print('init')
-        self.__Dialog=initWin(self.uiClass)
+        self._Dialog=initWin(self._uiClass)
 
     def show(self):
-        self.__Dialog.show()
+        self._Dialog.show()
 
 
 def initWin(uiClass):
@@ -24,11 +24,21 @@ def initWin(uiClass):
     return Dialog
 
 
+def initWidget(uiClass):
+    Widget = QtWidgets.QWidget()
+    try:
+        ui = uiClass()
+        ui.setupUi(Widget)
+    except:
+        print('wrong ui class')
+    return Widget
+
+
 def jsonGene(action,dataDict):
 ##      standard method to generate json to send,simply add
 ##      'action' key to dataDict.
-        dataDict.action=action
-        return dataDict
+    dataDict['action']=action
+    return dataDict
 
 
 def XHR(payload,port=serverPort,ip=serverIp):
@@ -37,5 +47,5 @@ def XHR(payload,port=serverPort,ip=serverIp):
     wait for one reply then return
     """
     #to be done
-    return {status:'true'}
+    return {'status':'true'}
     

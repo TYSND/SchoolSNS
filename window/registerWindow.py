@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from registerWindowUi import Ui_registerWindow
+from windowUi import *
 from util import *
 
 class registerWindow(publicWindow):
-    uiClass=Ui_registerWindow
+    _uiClass=Ui_registerWindow
