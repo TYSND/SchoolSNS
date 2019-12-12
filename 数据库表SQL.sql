@@ -3,7 +3,8 @@ create table userinfo
 	id int not null,
 	nick varchar(20) not null,
 	password varchar(20) not null,
-	primary key(account)
+	avatar int not null,
+	primary key(id)
 );
 
 create table friend
@@ -11,7 +12,7 @@ create table friend
 	toid int not null,
 	fromid int not null,
 	stat int not null,
-	primary key(toaccount,fromaccount)
+	primary key(toid,fromid)
 );
 
 create table chathistory
@@ -21,5 +22,6 @@ create table chathistory
 	sendtime datetime not null,
 	content varchar(200) not null,
 	contenttype int not null,
+	readed tinyint not null,
 	primary key(fromid,toid,sendtime)
 );
