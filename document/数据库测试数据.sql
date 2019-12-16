@@ -16,6 +16,16 @@ values
 insert into userinfo
 (id,nick,password,avatar)
 values
+(5,"user5","123",1);
+
+insert into userinfo
+(id,nick,password,avatar)
+values
+(6,"user56","123",1);
+
+insert into userinfo
+(id,nick,password,avatar)
+values
 (4,"user4","123",1);
 
 insert into friend
