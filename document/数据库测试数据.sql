@@ -56,43 +56,12 @@ insert into chathistory
 values
 (2,1,"2019-10-23 4:12:23","hehe",1);
 
-{
-	'ope': 1, 
-	'status': 1, 
-	'you': 
-	{
-		'nick': 'user1', 'avatar': 1, 'id': 1
-	}, 
-	'invite': 
-	[
-		{'from': 1, 'to': 3, 'nick': 'user3', 'avatar': 1, 'status': 1},
-		{'from': 2, 'to': 1, 'nick': 'user2', 'avatar': 1, 'status': 1},
-		{'from': 4, 'to': 1, 'nick': 'user4', 'avatar': 1, 'status': 0}
-	]
-	, 
-	'message': 
-	[
-		{
-			'id': 3, 
-			'send': 
-			[
-				{'data': 'hi,3', 'time': datetime.datetime(2019, 11, 10, 14, 11, 23)}
-			], 
-			'receive': 
-			[
-				{'data': 'hello,1', 'time': datetime.datetime(2019, 11, 11, 2, 11, 23)}
-			]
-		}, 
-		{
-			'id': 2, 
-			'send': 
-			[
-				{'data': 'hi,2', 'time': datetime.datetime(2019, 10, 10, 12, 11, 23)}
-			], 
-			'receive': 
-			[
-				{'data': 'hehe', 'time': datetime.datetime(2019, 10, 23, 4, 12, 23)}
-			]
-		}
-	]
-}
+select avatar,nick,id from userinfo 
+where 
+nick like '%5%'
+and 
+(select count(*) from friend where fromid=userinfo.id and toid=1)=0
+and
+(select count(*) from friend where fromid=1 and toid=userinfo.id)=0
+and
+id!=1
