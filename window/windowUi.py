@@ -40,36 +40,6 @@ class Ui_chatWindow(object):
         self.sendBut.setText(_translate("chatWindow", "发送"))
 
 
-class Ui_chatListItem(object):
-    def setupUi(self, chatListItem):
-        chatListItem.setObjectName("chatListItem")
-        chatListItem.resize(529, 100)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(chatListItem.sizePolicy().hasHeightForWidth())
-        chatListItem.setSizePolicy(sizePolicy)
-        self.nick = QtWidgets.QLabel(chatListItem)
-        self.nick.setGeometry(QtCore.QRect(30, 20, 81, 16))
-        self.nick.setObjectName("nick")
-        self.date = QtWidgets.QLabel(chatListItem)
-        self.date.setGeometry(QtCore.QRect(100, 20, 141, 16))
-        self.date.setObjectName("date")
-        self.text = QtWidgets.QTextBrowser(chatListItem)
-        self.text.setGeometry(QtCore.QRect(30, 40, 471, 51))
-        self.text.setObjectName("text")
-
-        self.retranslateUi(chatListItem)
-        QtCore.QMetaObject.connectSlotsByName(chatListItem)
-
-    def retranslateUi(self, chatListItem):
-        _translate = QtCore.QCoreApplication.translate
-        chatListItem.setWindowTitle(_translate("chatListItem", "Form"))
-        self.nick.setText(_translate("chatListItem", "nick"))
-        self.date.setText(_translate("chatListItem", "send date"))
-
-
-
 class Ui_registerWindow(object):
     def setupUi(self, registerWindow):
         registerWindow.setObjectName("registerWindow")
@@ -168,7 +138,7 @@ class Ui_loginWindow(object):
 class Ui_friWindow(object):
     def setupUi(self, friWindow):
         friWindow.setObjectName("friWindow")
-        friWindow.resize(400, 510)
+        friWindow.resize(400, 705)
         self.avatar = QtWidgets.QGraphicsView(friWindow)
         self.avatar.setGeometry(QtCore.QRect(20, 20, 80, 80))
         self.avatar.setObjectName("avatar")
@@ -184,15 +154,25 @@ class Ui_friWindow(object):
         self.addFriend = QtWidgets.QPushButton(friWindow)
         self.addFriend.setGeometry(QtCore.QRect(240, 60, 141, 31))
         self.addFriend.setObjectName("addFriend")
-        self.verticalLayoutWidget = QtWidgets.QWidget(friWindow)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 120, 361, 321))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.friList = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.friList.setContentsMargins(0, 0, 0, 0)
-        self.friList.setObjectName("friList")
         self.setting = QtWidgets.QPushButton(friWindow)
-        self.setting.setGeometry(QtCore.QRect(290, 460, 93, 31))
+        self.setting.setGeometry(QtCore.QRect(290, 660, 93, 31))
         self.setting.setObjectName("setting")
+        
+        self.scrollArea = QtWidgets.QScrollArea(friWindow)
+        self.scrollArea.setGeometry(QtCore.QRect(20, 120, 361, 500))
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollArea.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        scrollAreaWidgetContents = QtWidgets.QWidget()
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 338, 498))
+        scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        friList = QtWidgets.QVBoxLayout()
+        friList.setObjectName("friList")
+        friList.setAlignment(QtCore.Qt.AlignTop)
+        scrollAreaWidgetContents.setLayout(friList)
+        self.scrollArea.setWidget(scrollAreaWidgetContents)
 
         self.retranslateUi(friWindow)
         QtCore.QMetaObject.connectSlotsByName(friWindow)
@@ -211,7 +191,14 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     friWindow = QtWidgets.QDialog()
-    ui = Ui_chatWindow()
+    ui = Ui_friWindow()
     ui.setupUi(friWindow)
+    from friWindow import friListItem
+    friWindow.findChild(QtWidgets.QVBoxLayout,'friList').addWidget(
+        friListItem({'nick':'sdsd',
+                        'avatar':'1',
+                        'id':'1212',
+                        'unread':0,
+                        'online':'0'}))
     friWindow.show()
     sys.exit(app.exec_())
