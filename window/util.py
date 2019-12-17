@@ -2,6 +2,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 serverIp=""
 serverPort=0
 
+def warning(string):
+    print(string)
+
+def sendToServer(dataDict):
+    print('sendToServer')
+    pass
 
 class publicWindow:
     _Dialog=""

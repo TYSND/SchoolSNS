@@ -1,5 +1,74 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+class Ui_chatWindow(object):
+    def setupUi(self, chatWindow):
+        chatWindow.setObjectName("chatWindow")
+        chatWindow.resize(908, 759)
+        self.scrollArea = QtWidgets.QScrollArea(chatWindow)
+        self.scrollArea.setGeometry(QtCore.QRect(20, 20, 871, 471))
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollArea.setFixedHeight(400)
+        
+        messageList = QtWidgets.QVBoxLayout()
+        messageList.setObjectName("messageList")
+
+        groupBox = QtWidgets.QWidget()
+        groupBox.setLayout(messageList)
+        
+        self.scrollArea.setWidget(groupBox)
+        self.textarea = QtWidgets.QTextEdit(chatWindow)
+        self.textarea.setGeometry(QtCore.QRect(20, 510, 871, 181))
+        self.textarea.setObjectName("textarea")
+        self.sendBut = QtWidgets.QPushButton(chatWindow)
+        self.sendBut.setGeometry(QtCore.QRect(650, 700, 241, 51))
+        font = QtGui.QFont()
+        font.setFamily("Agency FB")
+        font.setPointSize(16)
+        self.sendBut.setFont(font)
+        self.sendBut.setObjectName("sendBut")
+
+        self.retranslateUi(chatWindow)
+        QtCore.QMetaObject.connectSlotsByName(chatWindow)
+
+    def retranslateUi(self, chatWindow):
+        _translate = QtCore.QCoreApplication.translate
+        chatWindow.setWindowTitle(_translate("chatWindow", "与 某某用户 交谈中"))
+        self.sendBut.setText(_translate("chatWindow", "发送"))
+
+
+class Ui_chatListItem(object):
+    def setupUi(self, chatListItem):
+        chatListItem.setObjectName("chatListItem")
+        chatListItem.resize(529, 100)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(chatListItem.sizePolicy().hasHeightForWidth())
+        chatListItem.setSizePolicy(sizePolicy)
+        self.nick = QtWidgets.QLabel(chatListItem)
+        self.nick.setGeometry(QtCore.QRect(30, 20, 81, 16))
+        self.nick.setObjectName("nick")
+        self.date = QtWidgets.QLabel(chatListItem)
+        self.date.setGeometry(QtCore.QRect(100, 20, 141, 16))
+        self.date.setObjectName("date")
+        self.text = QtWidgets.QTextBrowser(chatListItem)
+        self.text.setGeometry(QtCore.QRect(30, 40, 471, 51))
+        self.text.setObjectName("text")
+
+        self.retranslateUi(chatListItem)
+        QtCore.QMetaObject.connectSlotsByName(chatListItem)
+
+    def retranslateUi(self, chatListItem):
+        _translate = QtCore.QCoreApplication.translate
+        chatListItem.setWindowTitle(_translate("chatListItem", "Form"))
+        self.nick.setText(_translate("chatListItem", "nick"))
+        self.date.setText(_translate("chatListItem", "send date"))
+
+
 
 class Ui_registerWindow(object):
     def setupUi(self, registerWindow):
@@ -142,7 +211,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     friWindow = QtWidgets.QDialog()
-    ui = Ui_friWindow()
+    ui = Ui_chatWindow()
     ui.setupUi(friWindow)
     friWindow.show()
     sys.exit(app.exec_())
