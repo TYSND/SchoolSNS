@@ -28,21 +28,13 @@ class chatListItemR(customWidget):
 
 class chatWindow(publicWindow):
     _uiClass=Ui_chatWindow
-
+    
     def __init__(self,info,data):
+        print('chatWindow init')
         super(chatWindow,self).__init__()
-        info={
-            'from':{'nick':'lpj','id':'19170306'},
-            'to':{'nick':'wjy','id':'????????'}
-            }
-        data={'send':[{'data':'1th data','time':'1000000'},{'data':'2th data','time':'2000000'},
-                      {'data':'3th data','time':'3000000'},{'data':'4th data','time':'4000000'}],
-              'recv':[{'data':'1th data','time':'1002000'},{'data':'2th data','time':'2002000'},
-                      {'data':'3th data','time':'3002000'},{'data':'4th data','time':'4002000'}],
-            }
+        print(info,data)
         #chatter personal info
         self.info=info
-        #self.msg={}
         #self.msg is handle for friWindow's message dict
         self.msg=data
         'Qt controls'
@@ -53,6 +45,7 @@ class chatWindow(publicWindow):
         self.scrollBar=self._Dialog.findChild(QtWidgets.QScrollArea,'scrollArea').verticalScrollBar()
         self.scrollBar.rangeChanged.connect(lambda:self.scrollBar.setValue(self.scrollBar.maximum()))
         self.sendBut.clicked.connect(self.sendMsg)
+        print('sort message')
         #sort messages in time,store in msg
         msg=[]
         for m in self.msg['send']:
@@ -65,6 +58,7 @@ class chatWindow(publicWindow):
             msg.append(tmp)
         #sort with time as key
         msg=sorted(msg,key=lambda m:int(m['time']))
+        print('push messageBox')
         for m in msg:
             self.pushMessageBox(m['send'],str(datetime.fromtimestamp(int(m['time']))),m['data'])
         self.sortedMsg=msg
@@ -121,7 +115,15 @@ class chatWindow(publicWindow):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    fri = chatWindow(info={},data={})
+    fri = chatWindow(info={
+            'from':{'nick':'lpj','id':'19170306'},
+            'to':{'nick':'wjy','id':'????????'}
+            },data={'send':[{'data':'1th data','time':'1000000'},{'data':'2th data','time':'2000000'},
+                      {'data':'3th data','time':'3000000'},{'data':'4th data','time':'4000000'}],
+              'recv':[{'data':'1th data','time':'1002000'},{'data':'2th data','time':'2002000'},
+                      {'data':'3th data','time':'3002000'},{'data':'4th data','time':'4002000'}],
+            }
+            )
     fri.show()
     sys.exit(app.exec_())
 
