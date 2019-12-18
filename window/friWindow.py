@@ -1,23 +1,47 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from windowUi import *
 from customWidgets import *
-from friWindowFuncs import *
 from util import *
-
+from chatWindow import *
 
 class friListItem(customWidget):
     'list item show friend info in friend window'
     uiClass=Ui_friListItem
-
-    def __init__(self,data):
+    friId=""
+    #handle for friendWindow instance
+    friW=""
+    
+    def __init__(self,data,friW):
         super(friListItem,self).__init__()
+        self.friId=data['id']
         #self.findChild(QtWidgets.QGraphicsView,'avatar').setAvatar
         self.findChild(QtWidgets.QLabel,'nick').setText(data['nick'])
         self.findChild(QtWidgets.QLabel,'account').setText(data['id'])
         self.findChild(QtWidgets.QLabel,'status').setText('在线' if data['online']=='1' else '离线')
-        self.findChild(QtWidgets.QLabel,'message').setText(
-            (str(data['unread'])+'条') if data['unread']>0 else '没有' +'新消息')
+        self.findChild(QtWidgets.QPushButton,'message').setText(
+            ((str(data['unread'])+'条') if data['unread']>0 else '没有') +'新消息')
         self.setFixedHeight(85)
+        self.friW=friW
+        self.findChild(QtWidgets.QPushButton,'message').clicked.connect(self.openChatWin)
+
+    def openChatWin(self):
+        id=self.friId
+        'open chat window and unread message'
+        print(
+                    {'from':{'nick':self.friW.you['nick'],'id':self.friW.you['id']},
+                    'to':{'nick':self.friW.fri[id]['nick'],'id':id}
+                    })
+        print(self.friW.message[id])
+        try:
+            self.friW.chatWindows[id]=chatWindow(info={
+                    'from':{'nick':self.friW.you['nick'],'id':self.friW.you['id']},
+                    'to':{'nick':self.friW.fri[id]['nick'],'id':id}
+                    },
+                    data=self.friW.message[id])
+            self.friW.chatWindows[id].show()
+        except:
+            print('chat window show fail')
+
 
 class friWindow(publicWindow):
     _uiClass=Ui_friWindow
@@ -60,32 +84,41 @@ class friWindow(publicWindow):
         self.ctrl['nick'].setText(self.you['nick'])
         self.ctrl['id'].setText(self.you['id'])
 ##        self.ctrl.avatar.setAvatar(self.you.avatar)
-##        sort message in time rising
         #add friListItem into friList layout
         for id,friend in self.fri.items():
-##        get unread message count
-            unreadCnt=2
+            unreadCnt=0
+            for msg in self.message[id]['recv']:
+                if int(msg['readed'])==0:
+                    unreadCnt+=1
             newItem=friListItem({
                         'nick':friend['nick'],
                         'avatar':friend['avatar'],
                         'id':friend['id'],
                         'unread':unreadCnt,
                         'online':friend['online']
-                    })
+                    },self)
             #click nick or account to open chat window
-            newItem.findChild(QtWidgets.QLabel,'account').linkActivated.connect(
-                lambda:self.openChatWin(friend['id']))
-            newItem.findChild(QtWidgets.QLabel,'nick').linkActivated.connect(
-                lambda:self.openChatWin(friend['id']))
-            try:
-                self.ctrl['friList'].addWidget(newItem)
-            except:
-                print('add faild')
-
-    def openChatWin(account):
+##            newItem.findChild(QtWidgets.QLabel,'account').linkActivated.connect(self.openChatWin)
+##            newItem.findChild(QtWidgets.QLabel,'nick').linkActivated.connect(
+##                lambda:self.openChatWin(friend['id']))    
+            self.ctrl['friList'].addWidget(newItem)
+        
+    def openChatWin(self,id):
         'open chat window and unread message'
-        self.chatWindows[account]=chatWinow(self.message[account])
-        self.chatWindows[account].show()
+        print(
+                    {'from':{'nick':self.you['nick'],'id':self.you['id']},
+                    'to':{'nick':self.fri[id]['nick'],'id':id}
+                    })
+        print(self.message[id])
+        try:
+            self.chatWindows[id]=chatWindow(info={
+                    'from':{'nick':self.you['nick'],'id':self.you['id']},
+                    'to':{'nick':self.fri[id]['nick'],'id':id}
+                    },
+                    data=self.message[id])
+            self.chatWindows[id].show()
+        except:
+            print('chat window show fail')
 
     def clickFriInvite(self):
         pass
