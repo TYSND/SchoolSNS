@@ -38,7 +38,8 @@ class loginWindow(publicWindow):
             self.showInfo(self.lf.wrongText)
             return
         print('valid acc and pw')
-        jstr=jsonGene('login',{'acc':self.accIn.text(),'pw':self.pwIn.text()})
+        
+        jstr={'ope':opeDict['login'],'acc':self.accIn.text(),'pw':self.pwIn.text()}
         #send jstr to server and wait for reply
         """
         do disable all controls and display waiting animate()
@@ -47,11 +48,7 @@ class loginWindow(publicWindow):
         print('now xhr')
         jstr=XHR(jstr)
         #login ok,open friends window
-        if jstr['status']=='true':
-            """
-            dont show login window now()
-            open friends window()
-            """
+        if statDict[jstr['status']]=='true':
             self.friWin=friWindow()
             self.friWin.show()
             self._Dialog.hide()
@@ -67,7 +64,6 @@ class loginWindow(publicWindow):
         print('onClickRegister')
         #window must be member varieble or will be destroyed 
         self.regWin=registerWindow()
-        print('1')
         self.regWin.show()
 
     def showInfo(self,text):

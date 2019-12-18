@@ -5,6 +5,7 @@ class loginFuncs:
     
     def isAccValid(self,account):
         'is account valid or not'
+        return True
         if len(account)<=0:
             self.wrongText="账户不能为空"
             return False
@@ -14,6 +15,7 @@ class loginFuncs:
 
     def isPwValid(self,pw):
         'is password valid or not'
+        return True
         if len(pw)<=0:
             self.wrongText="密码不能为空"
             return False
