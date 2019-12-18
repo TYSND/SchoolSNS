@@ -66,6 +66,7 @@ class opJson:
 		self.osendport=[]
 	def opt(self):
 		ope=self.__jstr['ope']
+		print(ope)
 		self.__con=operateDB("localhost","root","a46513","schoolsys")
 		sql="select funcname from optjson where ope={ope}"
 		funcres=self.__con.select(sql.format(ope=ope))
@@ -195,7 +196,8 @@ class opJson:
 						#friendport.append(oport)
 						self.osendip.append(oip)
 						self.osendport.append(oport)
-
+			
+			#要给所有好友发送上线通知
 			ojsonDic={}
 			ojsonDic['ope']=8
 			ojsonDic['id']=id
@@ -458,6 +460,7 @@ class opJson:
 		
 		
 	def logout(self):
+		#print("logout")
 		#得到id
 		id=self.__jstr['id']
 		#修改数据库中该用户的ip和port为null
@@ -465,6 +468,7 @@ class opJson:
 		sql="update userinfo set ip=null,port=null where id={id}"
 		#print(sql.format(ip=self.__host,port=self.__port,id=id))
 		sqlList.append(sql.format(id=id))
+		#print(sql)
 		self.__con.modify(sqlList)
 		#给每个好友发送回复json串
 		jsonDic={}
