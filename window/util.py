@@ -2,12 +2,24 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 serverIp=""
 serverPort=0
 
-def warning(string):
-    print(string)
+def log(*string):
+    print(*string)
 
 def sendToServer(dataDict):
     print('sendToServer')
     pass
+
+def opeDict(opeName):
+    'convert oepration name to operation code'
+    dict={'login':'1','register':'2','send':'3','setting':'4',
+          'search':'5','friendApply':'6','reviewApply':'7','offline':'8'}
+    try:
+        return dict[opeName]
+    except:
+        return 'wrong opeName'
+
+def selectAvatar(avatarBef):
+    return 8
 
 class publicWindow:
     _Dialog=""
@@ -53,5 +65,110 @@ def XHR(payload,port=serverPort,ip=serverIp):
     wait for one reply then return
     """
     #to be done
-    return {'status':'true'}
+    log('XHR ok')
+    if True:
+        return {
+                'status':'1',
+                'you':{
+                    'nick':'lpj',
+                    'avatar':'2',
+                    'id':'19170306'
+                },
+                'invite':[
+                    {
+                        'from':'0',
+                        'id':'1',
+                        'nick':'wjy',
+                        'avatar':'1',
+                        'status':'1',
+                        'online':'1',
+                    },
+                    {
+                        'from':'0',
+                        'id':'2',
+                        'nick':'2nd friend',
+                        'avatar':'2',
+                        'status':'1',
+                        'online':'1',
+                    },
+                    {
+                        'from':'0',
+                        'id':'3',
+                        'nick':'3rd friend',
+                        'avatar':'3',
+                        'status':'1',
+                        'online':'0',
+                    },
+                    {
+                        'from':'0',
+                        'id':'4',
+                        'nick':'4th friend',
+                        'avatar':'1',
+                        'status':'1',
+                        'online':'1',
+                    },
+                    {
+                        'from':'0',
+                        'id':'5',
+                        'nick':'5nd friend',
+                        'avatar':'2',
+                        'status':'1',
+                        'online':'1',
+                    },
+                    {
+                        'from':'0',
+                        'id':'6',
+                        'nick':'6th friend',
+                        'avatar':'3',
+                        'status':'1',
+                        'online':'0',
+                    },
+                ],
+                'message':[
+                    {
+                        'id':'1',
+                        'send':[{'data':'1th data','time':'1000000'},{'data':'2th data','time':'2000000'},
+                                {'data':'3th data','time':'3000000'},{'data':'4th data','time':'4000000'}],
+                        'receive':[{'data':'1th data','time':'1002000','readed':'1'},
+                                   {'data':'2th data','time':'2002000','readed':'1'},
+                                   {'data':'3th data','time':'3002000','readed':'1'},
+                                   {'data':'4th data','time':'4002000','readed':'0'}],
+                    },
+                    {
+                        'id':'2',
+                        'send':[{'data':'1th data','time':'1000000'},{'data':'2th data','time':'2000000'},
+                                {'data':'3th data','time':'3000000'},{'data':'4th data','time':'4000000'}],
+                        'receive':[{'data':'1th data','time':'1002000','readed':'1'},
+                                   {'data':'2th data','time':'2002000','readed':'1'},
+                                   {'data':'3th data','time':'3002000','readed':'1'},
+                                   {'data':'4th data','time':'4002000','readed':'1'}],
+                    },
+                    {
+                        'id':'3',
+                        'send':[{'data':'1th data','time':'1000000'},{'data':'2th data','time':'2000000'},
+                                {'data':'3th data','time':'3000000'},{'data':'4th data','time':'4000000'}],
+                        'receive':[{'data':'1th data','time':'1002000','readed':'0'},
+                                   {'data':'2th data','time':'2002000','readed':'0'},
+                                   {'data':'3th data','time':'3002000','readed':'0'},
+                                   {'data':'4th data','time':'4002000','readed':'0'}],
+                    },
+                    {
+                        'id':'4',
+                        'send':[],
+                        'receive':[],
+                    },
+                    {
+                        'id':'5',
+                        'send':[],
+                        'receive':[],
+                    },
+                    {
+                        'id':'6',
+                        'send':[],
+                        'receive':[],
+                    }
+                ]
+            }
+    else:
+        return {'status':'0','info':'wrong password'}
     

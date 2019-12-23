@@ -1,63 +1,72 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from registerWindow import registerWindow
-from friWindow import friWindow
+from friWindow import FriWindow
 from loginWindowFuncs import loginFuncs
 from windowUi import *
 from util import *
 
 class loginWindow(publicWindow):
-    textCtrl=""     #label to show info
-    lf=loginFuncs() #alias for namespace store login functions
-    loginBut=""     
+    showInfo=""     #label to show info
+    lf="" #alias for namespace store login functions
+    loginBut=""
     accIn=""
     pwIn=""
     _uiClass=Ui_loginWindow
 
-    def __init__(self,loginBut,registerBut,accountInput,passwordInput,showLab):
-        print(self._Dialog)
+    def __init__(self,loginBut,registerBut,accountInput,passwordInput,showInfo):
         super(loginWindow,self).__init__()
-        #self.__Dialog=initWin(Ui_loginWindow)
-        #alias
         dialog=self._Dialog
-        #bind button onclick event
-        dialog.findChild(QtWidgets.QPushButton,loginBut).clicked.connect(self.login)
-        dialog.findChild(QtWidgets.QPushButton,registerBut).clicked.connect(self.register)
+        self.lf=loginFuncs(self._Dialog)
         #set handle
-        self.textCtrl=self._Dialog.findChild(QtWidgets.QLabel,showLab)
-        self.accIn=self._Dialog.findChild(QtWidgets.QLineEdit,accountInput)
-        self.pwIn=self._Dialog.findChild(QtWidgets.QLineEdit,passwordInput)
-    
+        self.showInfo=dialog.findChild(QtWidgets.QLabel,showInfo)
+        self.accIn=dialog.findChild(QtWidgets.QLineEdit,accountInput)
+        self.pwIn=dialog.findChild(QtWidgets.QLineEdit,passwordInput)
+        self.loginBut=dialog.findChild(QtWidgets.QPushButton,loginBut)
+        self.registerBut=dialog.findChild(QtWidgets.QPushButton,registerBut)
+        #bind button onclick event
+        self.loginBut.clicked.connect(self.login)
+        self.registerBut.clicked.connect(self.register)
+        
+        
     def login(self):
         'function after click login button'
-        print('onClickLogin')
-        print('account:'+self.accIn.text())
-        print('password:'+self.pwIn.text())
+        log('onClickLogin','account:',self.accIn.text(),'password:',self.pwIn.text())
         #check if account and pw format valid
         if not (self.lf.isAccValid(self.accIn.text()) and self.lf.isPwValid(self.pwIn.text())):
-            print('invalid acc or pw')
+            log('invalid acc or pw')
             self.showInfo(self.lf.wrongText)
             return
-        print('valid acc and pw')
-        
-        jstr={'ope':opeDict['login'],'acc':self.accIn.text(),'pw':self.pwIn.text()}
-        #send jstr to server and wait for reply
-        """
-        do disable all controls and display waiting animate()
-        wait for reply from server()
-        """
-        print('now xhr')
+        log('valid acc and pw')
+        jstr={'ope':opeDict('login'),'id':self.accIn.text(),'pw':self.pwIn.text()}
+        log(self.lf.ctrlDict)
+        #disable window,send jstr to server and wait for reply
+##        self.lf.disableWindow()
+##        log('disable ok')
         jstr=XHR(jstr)
+        log('xhr ok')
+##        self.lf.enableWindow()
+##        log('enable ok')
         #login ok,open friends window
-        if statDict[jstr['status']]=='true':
-            self.friWin=friWindow()
-            self.friWin.show()
-            self._Dialog.hide()
-        #login fail,show exception
-        else:
+        if jstr['status']=='1':
+            log('login success')
+            try:
+                #need data param for friWindow
+                self.friWin=FriWindow(jstr)
+                self.friWin.show()
+                self._Dialog.hide()
+            except:
+                log('show window fail')
+        #login fail,show
+        elif jstr['status']=='0':
+            log('login fail')
+            self.showInfo.setText(jstr['info'])
             """
             show exception info()
             undisable all controls and hide wating animate()
             """
+        else:
+            self.showInfo.setText('服务器回复异常')
+            log('unknown server reply')
     
     def register(self):
         'function after click register button'
@@ -79,6 +88,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
-                    showLab='showLab')
+                    showInfo='showLab')
     h.show()
     sys.exit(app.exec_())
