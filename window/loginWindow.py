@@ -4,7 +4,6 @@ from friWindow import FriWindow
 from loginWindowFuncs import loginFuncs
 from windowUi import *
 from util import *
-from udpClient import *
 import udpClient
 
 class loginWindow(publicWindow):
@@ -93,7 +92,6 @@ class loginWindow(publicWindow):
 if __name__ == "__main__":
     import sys
     udpClient.init()
-
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
