@@ -27,7 +27,7 @@ class handelJson (threading.Thread):
 		self.name = name
 		self.__jstr=data
 	def run(self):
-		optjson=opJson(jstr)
+		optjson=opJson(self.__jstr)
 		optjson.opt()
 
 #接收服务器消息的线程类，堵塞，接收到json串后，开线程，handelJson类处理
@@ -38,14 +38,14 @@ class recvThread(threading.Thread):
 	def run(self):
 		cnt=1
 		threads=[]
-
+		global cliSock
 		while True:
 			print('s')
-			global cliSock
+
 			print('cliSock is',cliSock)
 			recvData=cliSock.recv(4096)
 			jstr=recvData[0].decode("utf-8")
-			log('recv thread:',jstr)
+			print('recv thread:',jstr)
 			t=handelJson(cnt,cnt,jstr)
 			threads.append(t)
 			threads[cnt-1].start()
@@ -94,13 +94,13 @@ class opJson:
 		#print(res)
 		
 	def login(self):
-		global h
-		h.loginCallback(self.__jstr)
-	
+#		global h
+#		h.loginCallback(self.__jstr)
+		print(self.__jstr)
 	def register(self):
-		global h
-		h.registerCallback(self.__jstr)
-
+#		global h
+#		h.registerCallback(self.__jstr)
+		print(self.__jstr)
 	def sendmsg(self):
 		pass
 		

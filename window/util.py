@@ -4,10 +4,6 @@ import json
 serverIp=""
 serverPort=0
 
-#handle for loginWindow
-h=''
-
-
 def log(*string):
     print(*string)
 

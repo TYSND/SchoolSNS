@@ -91,7 +91,16 @@ class loginWindow(publicWindow):
 
 if __name__ == "__main__":
     import sys
-    udpClient.init()
+    jstrDic={
+        "ope":0
+    }
+    import json
+    jstr=json.dumps(jstrDic)
+    #must send first msg to server
+    #to make receiver valid
+    udpClient.cliSock.send(jstr)
+    udpClient.receiver.start()
+    #udpClient.init()
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
