@@ -76,7 +76,8 @@ class opJson:
 		res=getattr(self, func)()
 		#print(res)
 		return res,self.__sendip,self.__sendport
-		
+	def greet(self):
+		pass
 	def login(self):
 		self.__sendip=[self.__host]
 		self.__sendport=[self.__port]
