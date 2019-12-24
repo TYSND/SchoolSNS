@@ -172,9 +172,13 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="534" y="96" width="996" height="709" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1577105799082" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1577104737951">
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1577165937601">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1577104737951" />
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577165937601" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1577167446333">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1577167446333" />
   </component>
 </project>

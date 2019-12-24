@@ -40,6 +40,11 @@ class registerWindow(publicWindow):
         log(jstr)
         jstr=XHR(jstr)
 
+    def registerCallback(self,jstr):
+        if str(jstr['status'])=='1':
+            self.ctrl['showInfo'].setText('注册成功')
+        else:
+            self.ctrl['showInfo'].setText('注册失败')
 
     def validAcc(self):
         """valid user account"""

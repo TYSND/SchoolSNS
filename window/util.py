@@ -1,6 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from udpClient import *
 serverIp=""
 serverPort=0
+
+#handle for loginWindow
+h=''
+receiver=''
+cliSock=''
 
 def log(*string):
     print(*string)
@@ -59,12 +65,13 @@ def jsonGene(action,dataDict):
     return dataDict
 
 
-def XHR(payload,port=serverPort,ip=serverIp):
+def XHR(payload):
     """
     like XmlHttpRequest,send one payload to server and
     wait for one reply then return
     """
-    #to be done
+    global receiver,cliSock
+    cliSock.send(payload)
     log('XHR ok')
     if True:
         return {

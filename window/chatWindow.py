@@ -96,13 +96,13 @@ class chatWindow(publicWindow):
         txt=self.tEdit.toPlainText()
         nowTime=datetime.now().timestamp()
         try:
-            sendToServer({'ope':'3',
+            XHR({'ope':'3',
                           'from':self.info['from']['id'],
                           'to':self.info['from']['id'],
                           'data':txt,
                           'time':nowTime})
         except:
-            warning('send msg to server failed!')
+            log('send msg to server failed!')
             return
         self.maintainMsg(send=1,time=str(nowTime),text=txt)
         self.pushMessageBox(send=1,date=str(datetime.fromtimestamp(nowTime)),text=txt)

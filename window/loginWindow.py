@@ -5,6 +5,8 @@ from loginWindowFuncs import loginFuncs
 from windowUi import *
 from util import *
 
+
+
 class loginWindow(publicWindow):
     showInfo=""     #label to show info
     lf="" #alias for namespace store login functions
@@ -14,6 +16,8 @@ class loginWindow(publicWindow):
     _uiClass=Ui_loginWindow
 
     def __init__(self,loginBut,registerBut,accountInput,passwordInput,showInfo):
+        # receive thread start
+        global receiver
         super(loginWindow,self).__init__()
         dialog=self._Dialog
         self.lf=loginFuncs(self._Dialog)
@@ -43,6 +47,9 @@ class loginWindow(publicWindow):
 ##        self.lf.disableWindow()
 ##        log('disable ok')
         jstr=XHR(jstr)
+
+    def loginCallback(self,jstr):
+        """callback func after receive"""
         log('xhr ok')
 ##        self.lf.enableWindow()
 ##        log('enable ok')
@@ -85,6 +92,13 @@ class loginWindow(publicWindow):
 
 if __name__ == "__main__":
     import sys
+    global cliSock,receiver,h
+    # socket for client send&recv
+    cliSock = udpClientsock()
+    # receive thread object
+    receiver = recvThread(cliSock)
+    receiver.start()
+
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
