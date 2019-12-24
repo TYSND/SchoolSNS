@@ -17,6 +17,8 @@ class udpClientsock:
 	def recv(self,bufsize):
 		return self.__sock.recvfrom(bufsize)
 
+cliSock = udpClientsock()
+
 #处理json串的线程类
 class handelJson (threading.Thread):
 	def __init__(self, threadID, name,data):
@@ -38,17 +40,18 @@ class recvThread(threading.Thread):
 		threads=[]
 
 		while True:
+			print('s')
 			global cliSock
 			print('cliSock is',cliSock)
 			recvData=cliSock.recv(4096)
 			jstr=recvData[0].decode("utf-8")
 			log('recv thread:',jstr)
-			#optjson=opJson(jstr)
 			t=handelJson(cnt,cnt,jstr)
 			threads.append(t)
 			threads[cnt-1].start()
 			cnt+=1
 
+receiver = recvThread()
 
 #发送数据到服务器的线程类，接收到其他窗口的json串后，开这个类对应的线程，send数据到服务器
 class sendThread(threading.Thread):
@@ -122,6 +125,4 @@ class opJson:
 
 def init():
 	global cliSock,receiver
-	cliSock = udpClientsock()
-	receiver = recvThread()
 	receiver.start()

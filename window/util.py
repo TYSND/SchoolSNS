@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from udpClient import *
+import udpClient
 import json
 serverIp=""
 serverPort=0
@@ -67,9 +67,7 @@ def XHR(payload):
     """
     log('try XHR',json.dumps(payload))
     udpClient.cliSock.send(json.dumps(payload))
-    data=udpClient.cliSock.recv(4096)
-    log('recv:',data[0])
-    log('XHR ok')
+    log('send ok')
     return
     if True:
         return {
