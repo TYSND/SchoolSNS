@@ -80,14 +80,15 @@ class opJson:
 		#print(res)
 		
 	def login(self):
-
-		
+		global h
+		h.loginCallback(self.__jstr)
 	
 	def register(self):
-
+		global h
+		h.registerCallback(self.__jstr)
 
 	def sendmsg(self):
-
+		
 		
 	def setinfo(self):
 
