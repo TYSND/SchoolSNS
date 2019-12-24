@@ -4,8 +4,8 @@ from friWindow import FriWindow
 from loginWindowFuncs import loginFuncs
 from windowUi import *
 from util import *
-
-
+from udpClient import *
+import udpClient
 
 class loginWindow(publicWindow):
     showInfo=""     #label to show info
@@ -92,12 +92,7 @@ class loginWindow(publicWindow):
 
 if __name__ == "__main__":
     import sys
-    global cliSock,receiver,h
-    # socket for client send&recv
-    cliSock = udpClientsock()
-    # receive thread object
-    receiver = recvThread(cliSock)
-    receiver.start()
+    udpClient.init()
 
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\

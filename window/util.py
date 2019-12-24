@@ -1,19 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from udpClient import *
+import json
 serverIp=""
 serverPort=0
 
 #handle for loginWindow
 h=''
-receiver=''
-cliSock=''
+
 
 def log(*string):
     print(*string)
-
-def sendToServer(dataDict):
-    print('sendToServer')
-    pass
 
 def opeDict(opeName):
     'convert oepration name to operation code'
@@ -64,15 +60,17 @@ def jsonGene(action,dataDict):
     dataDict['action']=action
     return dataDict
 
-
 def XHR(payload):
     """
     like XmlHttpRequest,send one payload to server and
     wait for one reply then return
     """
-    global receiver,cliSock
-    cliSock.send(payload)
+    log('try XHR',json.dumps(payload))
+    udpClient.cliSock.send(json.dumps(payload))
+    data=udpClient.cliSock.recv(4096)
+    log('recv:',data[0])
     log('XHR ok')
+    return
     if True:
         return {
                 'status':'1',

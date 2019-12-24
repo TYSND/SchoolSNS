@@ -4,7 +4,6 @@ import threading
 import time
 import json
 import datetime
-
 class udpClientsock:
 	def __init__(self):
 		self.__sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -31,14 +30,19 @@ class handelJson (threading.Thread):
 
 #接收服务器消息的线程类，堵塞，接收到json串后，开线程，handelJson类处理
 class recvThread(threading.Thread):
-	def __init__(self,ucs):
-		self.ucs=ucs
+	def __init__(self):
+		threading.Thread.__init__(self)
+
 	def run(self):
 		cnt=1
 		threads=[]
+
 		while True:
-			recvData=self.ucs.recv(4096)
+			global cliSock
+			print('cliSock is',cliSock)
+			recvData=cliSock.recv(4096)
 			jstr=recvData[0].decode("utf-8")
+			log('recv thread:',jstr)
 			#optjson=opJson(jstr)
 			t=handelJson(cnt,cnt,jstr)
 			threads.append(t)
@@ -114,3 +118,10 @@ class opJson:
 		
 	def logout(self):
 		pass
+
+
+def init():
+	global cliSock,receiver
+	cliSock = udpClientsock()
+	receiver = recvThread()
+	receiver.start()
