@@ -20,7 +20,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.chatWindow">
+  <component name="RunManager" selected="Python.loginWindow">
     <configuration name="chatWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SchoolSNS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,9 +107,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.loginWindow" />
         <item itemvalue="Python.chatWindow" />
         <item itemvalue="Python.registerWindow" />
-        <item itemvalue="Python.loginWindow" />
         <item itemvalue="Python.friWindow" />
       </list>
     </recent_temporary>
@@ -152,22 +152,22 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="471" y="51" key="#friWindow/0.0.1536.864@0.0.1536.864" timestamp="1577104462704" />
-    <state width="1515" height="224" key="GridCell.Tab.0.bottom" timestamp="1577106908988">
+    <state width="1515" height="224" key="GridCell.Tab.0.bottom" timestamp="1577167900296">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1577106908988" />
-    <state width="1515" height="224" key="GridCell.Tab.0.center" timestamp="1577106908988">
+    <state width="1515" height="224" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1577167900296" />
+    <state width="1515" height="224" key="GridCell.Tab.0.center" timestamp="1577167900296">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1577106908988" />
-    <state width="1515" height="224" key="GridCell.Tab.0.left" timestamp="1577106908988">
+    <state width="1515" height="224" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1577167900296" />
+    <state width="1515" height="224" key="GridCell.Tab.0.left" timestamp="1577167900295">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1577106908988" />
-    <state width="1515" height="224" key="GridCell.Tab.0.right" timestamp="1577106908988">
+    <state width="1515" height="224" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1577167900295" />
+    <state width="1515" height="224" key="GridCell.Tab.0.right" timestamp="1577167900296">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1577106908988" />
+    <state width="1515" height="224" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1577167900296" />
     <state x="534" y="96" width="996" height="709" key="SettingsEditor" timestamp="1577105799082">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

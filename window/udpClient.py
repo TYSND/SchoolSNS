@@ -88,21 +88,22 @@ class opJson:
 		h.registerCallback(self.__jstr)
 
 	def sendmsg(self):
-		
+		pass
 		
 	def setinfo(self):
-
+		pass
 		
 	def searchfriend(self):
-
+		pass
 
 		
 	def addfriend(self):
-
+		pass
 		
 		
 	def review(self):
-
+		pass
 		
 		
 	def logout(self):
+		pass
