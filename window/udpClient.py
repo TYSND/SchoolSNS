@@ -4,6 +4,10 @@ import threading
 import time
 import json
 import datetime
+
+#handle for loginwindow
+h=''
+
 class udpClientsock:
 	def __init__(self):
 		self.__sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -40,9 +44,6 @@ class recvThread(threading.Thread):
 		threads=[]
 		global cliSock
 		while True:
-			print('s')
-
-			print('cliSock is',cliSock)
 			recvData=cliSock.recv(4096)
 			jstr=recvData[0].decode("utf-8")
 			print('recv thread:',jstr)
@@ -94,8 +95,8 @@ class opJson:
 		#print(res)
 		
 	def login(self):
-#		global h
-#		h.loginCallback(self.__jstr)
+		global h
+		h.loginCallback(self.__jstr)
 		print(self.__jstr)
 	def register(self):
 #		global h

@@ -26,7 +26,11 @@ class publicWindow:
         self._Dialog=initWin(self._uiClass)
 
     def show(self):
-        self._Dialog.show()
+        try:
+            log(self._uiClass,self._Dialog,self._Dialog.show)
+            self._Dialog.show()
+        except:
+            log('wtf??wrong dialog??')
 
 
 def initWin(uiClass):

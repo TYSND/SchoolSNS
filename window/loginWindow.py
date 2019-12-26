@@ -50,20 +50,23 @@ class loginWindow(publicWindow):
     def loginCallback(self,jstr):
         """callback func after receive"""
         log('xhr ok')
-##        self.lf.enableWindow()
-##        log('enable ok')
         #login ok,open friends window
-        if jstr['status']=='1':
+        if str(jstr['status'])=='1':
             log('login success')
             try:
                 #need data param for friWindow
                 self.friWin=FriWindow(jstr)
+                log('now show friWin')
+                log(self.friWin)
                 self.friWin.show()
+                log('show friWin ok')
                 self._Dialog.hide()
-            except:
+                log('hide dialog ok')
+            except Exception as e:
                 log('show window fail')
+                log(e)
         #login fail,show
-        elif jstr['status']=='0':
+        elif str(jstr['status'])=='0':
             log('login fail')
             self.showInfo.setText(jstr['info'])
             """
@@ -89,21 +92,35 @@ class loginWindow(publicWindow):
             print('textCtrl wrong')
 
 
+def my_exception_hook(exctype, value, traceback):
+    # Print the error and traceback
+    print(exctype, value, traceback)
+    # Call the normal Exception hook after
+    sys._excepthook(exctype, value, traceback)
+    sys.exit(1)
+
 if __name__ == "__main__":
     import sys
-    jstrDic={
-        "ope":0
-    }
     import json
+
+    # Back up the reference to the exceptionhook
+    sys._excepthook = sys.excepthook
+
+    # Set the exception hook to our wrapping function
+    sys.excepthook = my_exception_hook
+    #greet msg send first to server,
+    #or receiver invalid
+    jstrDic={"ope":0}
     jstr=json.dumps(jstrDic)
-    #must send first msg to server
-    #to make receiver valid
     udpClient.cliSock.send(jstr)
     udpClient.receiver.start()
-    #udpClient.init()
     app = QtWidgets.QApplication(sys.argv)
     h=loginWindow(loginBut='loginBut',registerBut='registerBut',\
                     accountInput='accountInput',passwordInput='passwordInput',\
                     showInfo='showLab')
+    udpClient.h=h
     h.show()
-    sys.exit(app.exec_())
+    try:
+        sys.exit(app.exec_())
+    except:
+        print('exiting')
