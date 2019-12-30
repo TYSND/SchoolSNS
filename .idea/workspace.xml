@@ -18,6 +18,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.loginWindow">
@@ -108,9 +109,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.loginWindow" />
+        <item itemvalue="Python.friWindow" />
         <item itemvalue="Python.chatWindow" />
         <item itemvalue="Python.registerWindow" />
-        <item itemvalue="Python.friWindow" />
       </list>
     </recent_temporary>
   </component>
@@ -156,33 +157,53 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="471" y="51" key="#friWindow/0.0.1536.864@0.0.1536.864" timestamp="1577104462704" />
-    <state width="1515" height="224" key="GridCell.Tab.0.bottom" timestamp="1577172586379">
+    <state width="1515" height="224" key="GridCell.Tab.0.bottom" timestamp="1577193785378">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1577172586379" />
-    <state width="1515" height="224" key="GridCell.Tab.0.center" timestamp="1577172586379">
+    <state width="1515" height="224" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1577193785378" />
+    <state width="1515" height="224" key="GridCell.Tab.0.center" timestamp="1577193785377">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1577172586379" />
-    <state width="1515" height="224" key="GridCell.Tab.0.left" timestamp="1577172586379">
+    <state width="1515" height="224" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1577193785377" />
+    <state width="1515" height="224" key="GridCell.Tab.0.left" timestamp="1577193785377">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1577172586379" />
-    <state width="1515" height="224" key="GridCell.Tab.0.right" timestamp="1577172586379">
+    <state width="1515" height="224" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1577193785377" />
+    <state width="1515" height="224" key="GridCell.Tab.0.right" timestamp="1577193785378">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="224" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1577172586379" />
+    <state width="1515" height="224" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1577193785378" />
+    <state width="1515" height="277" key="GridCell.Tab.1.bottom" timestamp="1577193784099">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="277" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1577193784099" />
+    <state width="1515" height="277" key="GridCell.Tab.1.center" timestamp="1577193784099">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="277" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1577193784099" />
+    <state width="1515" height="277" key="GridCell.Tab.1.left" timestamp="1577193784099">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="277" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1577193784099" />
+    <state width="1515" height="277" key="GridCell.Tab.1.right" timestamp="1577193784099">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="277" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1577193784099" />
     <state x="534" y="96" width="996" height="709" key="SettingsEditor" timestamp="1577105799082">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="534" y="96" width="996" height="709" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1577105799082" />
-    <state x="449" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1577165937601">
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1577193544219">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="449" y="257" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577165937601" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1577169738674">
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577193544219" />
+    <state x="410" y="159" width="700" height="530" key="recent.locations.popup" timestamp="1577193549995">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1577169738674" />
+    <state x="410" y="159" width="700" height="530" key="recent.locations.popup/0.0.1536.864@0.0.1536.864" timestamp="1577193549995" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1577191886947">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1577191886947" />
   </component>
 </project>
