@@ -214,7 +214,7 @@ class opJson:
 				chatDic['send']=[]
 				chatDic['receive']=[]
 				sql="""
-						select sendtime,content from chathistory
+						select sendtime,content,readed from chathistory
 						where
 						fromid={id} and toid={fid}
 						"""
@@ -225,12 +225,14 @@ class opJson:
 					sendtime=time.mktime(sendrow[0].timetuple())
 					#print(sendtime)
 					content=sendrow[1]
+					readed=sendrow[2]
 					tmp={}
 					tmp['data']=content
 					tmp['time']=sendtime
+					tmp['readed']=readed
 					chatDic['send'].append(tmp)
 				sql="""
-						select sendtime,content from chathistory
+						select sendtime,content,readed from chathistory
 						where
 						fromid={fid} and toid={id}
 						"""
@@ -238,9 +240,11 @@ class opJson:
 				for recvrow in recvres:
 					sendtime=time.mktime(recvrow[0].timetuple())
 					content=recvrow[1]
+					readed=recvrow[2]
 					tmp={}
 					tmp['data']=content
 					tmp['time']=sendtime
+					tmp['readed']=readed
 					chatDic['receive'].append(tmp)	
 				jsonDic['message'].append(chatDic)
 			#将字典转换为json串，并返回
