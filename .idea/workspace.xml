@@ -157,6 +157,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="471" y="51" key="#friWindow/0.0.1536.864@0.0.1536.864" timestamp="1577104462704" />
+    <state x="548" y="174" key="FileChooserDialogImpl" timestamp="1577411667491">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="548" y="174" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1577411667491" />
     <state width="1515" height="224" key="GridCell.Tab.0.bottom" timestamp="1577193785378">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -193,10 +197,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="534" y="96" width="996" height="709" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1577105799082" />
-    <state x="449" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1577193544219">
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1577411628249">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="449" y="257" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577193544219" />
+    <state x="449" y="257" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577411628249" />
     <state x="410" y="159" width="700" height="530" key="recent.locations.popup" timestamp="1577193549995">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
